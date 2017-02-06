@@ -16,8 +16,24 @@ CSSREM
 
 ##### 配置参数
 
-参数配置文件：Sublime Text -> Preferences -> Package Settings -> cssrem
-
+参数配置文件：Sublime Text -> Preferences -> Package Settings -> cssrem ->Settings-Default
 * `px_to_rem` - px转rem的单位比例，默认为40。
 * `max_rem_fraction_length` - px转rem的小数部分的最大长度。默认为6。
 * `available_file_types` - 启用此插件的文件类型。默认为：[".css", ".less", ".sass"]。
+
+{
+    "px_to_rem": 128,
+    "max_rem_fraction_length": 6,
+    "available_file_types": [".css", ".less", ".sass"]
+}
+
+####在文档html内引入js如下：
+var cssEl = document.createElement('style');
+document.documentElement.firstElementChild.appendChild(cssEl);
+function setPxPerRem(){
+	var dpr = 1;
+	*把viewport分成10份的rem，html标签的font-size设置为1rem的大小;
+	var pxPerRem = document.documentElement.clientWidth * dpr / 10;
+	cssEl.innerHTML = 'html{font-size:' + pxPerRem + 'px!important;}';
+}
+setPxPerRem();
